@@ -3,18 +3,18 @@
 
 
      <div class="container">
-         <Home></Home>
+         <NewHome></NewHome>
 
       </div>
   </div>
 </template>
 
 <script>
-import Home from './components/Home'
+import NewHome from './components/NewHome'
 export default {
   name: 'App',
   components:{
-    Home
+    NewHome
   }
 }
 </script>

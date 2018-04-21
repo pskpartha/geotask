@@ -10,7 +10,6 @@
                 <hr>
                     <!-- <textarea col="20" v-autosize="jsondata">{{jsondata}}</textarea> -->
                     <!-- <pre> {{jsondata}} </pre> -->
-                    <input type="button" id="dwn-btn" value="Download dinamically generated text file"/>
                 </div>
             </div>
             <div class="col-lg-8">
@@ -22,7 +21,7 @@
                         <pre> {{poly}} </pre>
                         <!-- <h4 class="card-title">Success card title</h4> <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
                         content.</p> -->
-                        <!-- <button @click.native="downloadFile()" type="button" class="btn btn-danger">Download</button> -->
+                        <!-- <button v-on:click="downloadFile(index)" type="button" class="btn btn-danger">Download</button> -->
                     </div>
                 </div>
 
@@ -34,6 +33,9 @@
                         <pre> {{point}} </pre>
                         <!-- <h4 class="card-title">Success card title</h4> <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
                         content.</p> -->
+
+                        <button v-on:click="downloadPointFile(index)" type="button" class="btn btn-danger">Download</button>
+
                     </div>
                 </div>
             </div>
@@ -144,26 +146,13 @@ export default {
        }
 
     });
-
-    //
-    // var obj = {a: 123, b: "4 5 6"};
-    // var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(arraydata));
-
-    // $('<a href="data:' + data + '" download="data.json">download JSON</a>').appendTo('#container');
-    // Start file download.
-
-
   },
-  downloadFile:function(index){
-        console.log(working);
-        // document.getElementById("dwn-btn").addEventListener("click", function(){
-        //     // Generate download of hello.txt file with some content
-        //     // var text = document.getElementById("text-val").value;
-        //       var text = self.jsondata;
-        //     var filename = "hello.geojson";
-        //
-        //     download(filename, text);
-        // }, false);
+  downloadPointFile:function(index){
+        console.log(index);
+      let pointdata =  this.points[index];
+      let formatedpoint = JSON.stringify(pointdata, null, 2);
+          console.log(formatedpoint);
+          download("ponit.geojson",formatedpoint);
       }
   },
 
