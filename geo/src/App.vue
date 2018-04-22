@@ -1,14 +1,12 @@
 <template>
-  <div id="app">
+<div id="app">
 
+    <div class="container">
+        <NewHome></NewHome>
 
-     <div class="container">
-         <NewHome></NewHome>
-
-      </div>
-  </div>
+    </div>
+</div>
 </template>
-
 <script>
 import NewHome from './components/NewHome'
 export default {
@@ -18,7 +16,8 @@ export default {
   }
 }
 </script>
-
 <style>
-
+body {
+  background-color: #ececec;
+}
 </style>
