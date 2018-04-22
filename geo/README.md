@@ -1,7 +1,10 @@
 ## installation guide
 
-#first insall nodejs (v8.10.0)from here
+Install nodejs (v8.10.0)from here
 https://nodejs.org/en/
+
+
+``` bash
 
 # clone repository
 git clone https://github.com/pskpartha/geotask.git
@@ -9,9 +12,6 @@ git clone https://github.com/pskpartha/geotask.git
 # get into geo folder using any terminal
 cd geo
 
-## now install dependencies and run project
-
-``` bash
 # install dependencies
 npm install
 
