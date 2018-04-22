@@ -1,6 +1,6 @@
 ## installation guide
 
-Install nodejs (v8.10.0)from here
+install nodejs (v8.10.0)from here
 https://nodejs.org/en/
 
 
