@@ -4,7 +4,7 @@ import Vue from 'vue'
 import VueAutosize from 'vue-autosize'
 import App from './App'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = true
 
 Vue.use(VueAutosize);
 new Vue({

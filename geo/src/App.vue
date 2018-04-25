@@ -1,23 +1,23 @@
 <template>
 <div id="app">
 
-    <div class="container">
-        <NewHome></NewHome>
-
+    <div class="container-fluid">
+        <DashView></DashView>
     </div>
+
 </div>
 </template>
 <script>
-import NewHome from './components/NewHome'
+import DashView from './components/DashView'
 export default {
   name: 'App',
   components:{
-    NewHome
+    DashView
   }
 }
 </script>
 <style>
-body {
+/* body {
   background-color: #ececec;
-}
+} */
 </style>
