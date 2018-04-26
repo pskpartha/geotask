@@ -11,6 +11,15 @@
                 </div>
             </div>
         </fieldset>
+        <div class="progress">
+            <div id="bar" class="progress-bar bg-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        <!-- <h3>File contents:</h3>
+        <pre>
+                      <textarea id="output">
+                      </textarea>
+                    </pre> -->
     </div>
 </template>
 <script>
@@ -25,7 +34,8 @@ export default {
       lines:[],
       jsondata:'',
       uploadData:'',
-      bufferdata:''
+      bufferdata:'',
+      formatteddata:[]
     }
   },
   methods:{
@@ -79,11 +89,60 @@ export default {
 
 loaded:function (evt)
 {
+    var self = this;
   // Obtain the read file data
   var fileString = evt.target.result;
-    this.uploadData = fileString;
-     // console.log(this.uploadData );
-   document.getElementById('output').innerHTML = fileString;
+  this.uploadData = fileString;
+  // console.log(JSON.parse(fileString));
+
+  var finaldata = JSON.parse(fileString);
+  // console.log(finaldata);
+
+  // var arrayobj = JSON.parse(this.uploadData);
+  // console.log(arrayobj);
+  let arraydata = finaldata.features;
+  arraydata.forEach(function(data) {
+    // console.log(data.geometry.type);
+    if (data.geometry.type === "Point") {
+        let point = data;
+       // console.log(data.geometry.type);
+        self.points.push(point);
+     }else if (data.geometry.type === "Polygon"){
+       let polygon = data;
+      // console.log(data.geometry.type);
+       self.polygons.push(polygon);
+     }if (data.geometry.type === "LineString"){
+       let line = data;
+      // console.log(data.geometry.type);
+       self.lines.push(line);
+}
+     else {
+       console.log('found nothing');
+     }
+
+  });
+
+    this.formatteddata.push(this.points);
+    this.formatteddata.push(this.polygons);
+    this.formatteddata.push(this.lines);
+    // console.log(this.points);
+    // console.log(this.formatteddata);
+
+
+  // Test if bookmarks is null
+  if(localStorage.getItem('localspdata') === null){
+
+    localStorage.setItem('localspdata', JSON.stringify(this.formatteddata));
+  } else {
+    localStorage.removeItem('localspdata');
+    localStorage.setItem('localspdata', JSON.stringify(this.formatteddata));
+  }
+
+
+   console.log(JSON.parse(localStorage.getItem('localspdata')));
+
+
+   // document.getElementById('output').innerHTML = JSON.stringify(this.formatteddata);
 	 document.getElementById("bar").style.width = 100 + "%";
 },
 
@@ -104,28 +163,29 @@ loaded:function (evt)
     var self = this;
     // console.log(this.spdata.features[0].geometry.type);
     // console.log(this.spdata.features);
-    var arrayobj = JSON.parse(this.uploadData);
-    let arraydata = arrayobj.features;
-    arraydata.forEach(function(data) {
-      // console.log(data.geometry.type);
-      if (data.geometry.type === "Point") {
-          let point = data;
-         // console.log(data.geometry.type);
-          self.points.push(point);
-       }else if (data.geometry.type === "Polygon"){
-         let polygon = data;
-        // console.log(data.geometry.type);
-         self.polygons.push(polygon);
-       }if (data.geometry.type === "Line"){
-         let line = data;
-        // console.log(data.geometry.type);
-         self.lines.push(line);
-}
-       else {
-         console.log('found nothing');
-       }
-
-    });
+    // var arrayobj = JSON.parse(this.uploadData);
+    // console.log(arrayobj);
+//     let arraydata = arrayobj.features;
+//     arraydata.forEach(function(data) {
+//       // console.log(data.geometry.type);
+//       if (data.geometry.type === "Point") {
+//           let point = data;
+//          // console.log(data.geometry.type);
+//           self.points.push(point);
+//        }else if (data.geometry.type === "Polygon"){
+//          let polygon = data;
+//         // console.log(data.geometry.type);
+//          self.polygons.push(polygon);
+//        }if (data.geometry.type === "Line"){
+//          let line = data;
+//         // console.log(data.geometry.type);
+//          self.lines.push(line);
+// }
+//        else {
+//          console.log('found nothing');
+//        }
+//
+//     });
   },
   downloadPointFile:function(index){
         // console.log(index);
