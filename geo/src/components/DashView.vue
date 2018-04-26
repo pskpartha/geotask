@@ -2,11 +2,19 @@
 <div id="dashview">
     <div class="row">
         <div class="col-lg-6 col-md-6">
-            <UploadView></UploadView>
-            <MapView></MapView>
+            <div class="psk-box">
+                <UploadView></UploadView>
+            </div>
+            <div class="psk-box">
+                <MapView></MapView>
+            </div>
+
         </div>
         <div class="col-lg-6 col-md-6">
-            <ListView></ListView>
+            <div class="psk-box">
+                <ListView></ListView>
+            </div>
+
         </div>
     </div>
 </div>

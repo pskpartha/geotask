@@ -2,7 +2,10 @@
 <div id="app">
 
     <div class="container-fluid">
-        <DashView></DashView>
+      <div class="body-wrapper">
+            <DashView></DashView>
+      </div>
+
     </div>
 
 </div>
