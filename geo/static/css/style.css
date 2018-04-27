@@ -6,6 +6,7 @@ body {
   background: #f4f4f4;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 400;
+  padding-top: 20px;
 }
 
 .body-wrapper {
@@ -20,3 +21,34 @@ body {
 }
 
 .list-box {}
+
+textarea {
+  min-width: 400px;
+}
+
+.card-custom {
+  background: #f7f7f9;
+  margin: 0 0 10px 0;
+  padding: 5px;
+}
+
+.card-point-border {
+  border: 1px solid #6610f2;
+}
+
+.card-point-poly {
+  border: 1px solid #fd7e14;
+}
+
+.card-point-border {
+  border: 1px solid #43ac6a;
+}
+
+.badge-custom {
+  margin: 5px 0;
+  color: #ffffff;
+}
+
+.badge-indigo {
+  background: #6610f2;
+}

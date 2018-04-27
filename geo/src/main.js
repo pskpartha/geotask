@@ -6,6 +6,9 @@ import App from './App'
 
 Vue.config.productionTip = true
 
+
+
+
 Vue.use(VueAutosize);
 new Vue({
   el: '#app',

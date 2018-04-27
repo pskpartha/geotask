@@ -6,7 +6,7 @@
                 <UploadView></UploadView>
             </div>
             <div class="psk-box">
-                <!-- <MapView></MapView> -->
+                <MapView></MapView>
             </div>
 
         </div>

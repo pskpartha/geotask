@@ -14,7 +14,7 @@ export default {
       uploaddone:false,
       msg: 'Welcome to Your Vue.js App',
       polygons:[],
-      points:[],
+      points:'',
       lines:[],
       jsondata:'',
       uploadData:'',
@@ -24,172 +24,197 @@ export default {
   methods:{
     mapbox:function(){
       mapboxgl.accessToken = 'pk.eyJ1IjoicHNrcGFydGhhIiwiYSI6ImNqZ2UxbmVlMTIxOWsycW5wNHI4OTM0ZTgifQ.3i9niqwBEtRJ6E_WMXiVVw';
-      var map = new mapboxgl.Map({
-          container: 'mapid',
-          style: 'mapbox://styles/mapbox/streets-v9',
-          center: [-68.13734351262877, 45.137451890638886],
-          zoom: 5
-      });
+  var map = new mapboxgl.Map({
+      container: "mapid",
+      style: "mapbox://styles/mapbox/outdoors-v9",
+      center: [25.0323486328125,
+      58.68264859034907],
+      zoom: 10
+  });
 
-var testdata= {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          24.748367071151733,
-          59.44697309178145
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -95.1416015625,
-              39.774769485295465
-            ],
-            [
-              -95.625,
-              38.272688535980976
-            ],
-            [
-              -95.3173828125,
-              36.27970720524017
-            ],
-            [
-              -89.033203125,
-              35.639441068973944
-            ],
-            [
-              -86.044921875,
-              37.61423141542417
-            ],
-            [
-              -89.20898437499999,
-              39.36827914916014
-            ],
-            [
-              -92.2412109375,
-              40.212440718286466
-            ],
-            [
-              -95.1416015625,
-              39.774769485295465
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {},
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              -90.52734374999999,
-              43.229195113965005
-            ],
-            [
-              -90.966796875,
-              41.934976500546604
-            ],
-            [
-              -89.56054687499999,
-              41.60722821271717
-            ],
-            [
-              -90.3076171875,
-              43.100982876188546
-            ],
-            [
-              -90.52734374999999,
-              43.229195113965005
-            ]
-          ]
-        ]
-      }
-    }
-  ]
-};
-var nodata = '';
-
-      map.on('load', function () {
-
-
-
-          try
-          {
-            map.addLayer({
-                'id': 'maine',
-                'type': 'fill',
-                'source': {
-                    'type': 'geojson',
-                    'data': nodata,
-                },
-                'layout': {},
-                'paint': {
-                    'fill-color': '#088',
-                    'fill-opacity': 0.8
+  map.on("load", function() {
+      map.addSource("national-park", {
+          "type": "geojson",
+          "data": {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "properties": {},
+                "geometry": {
+                  "type": "LineString",
+                  "coordinates": [
+                    [
+                      25.0323486328125,
+                      58.68264859034907
+                    ],
+                    [
+                      25.1531982421875,
+                      58.64265251657599
+                    ],
+                    [
+                      25.279541015625,
+                      58.68264859034907
+                    ],
+                    [
+                      25.345458984375,
+                      58.74255676871156
+                    ],
+                    [
+                      25.46630859375,
+                      58.69406761967911
+                    ]
+                  ]
                 }
-            });
-
-          }catch(e)
-          {
-
-            return;
+              },
+              {
+                "type": "Feature",
+                "properties": {},
+                "geometry": {
+                  "type": "LineString",
+                  "coordinates": [
+                    [
+                      25.686035156249996,
+                      59.21531159041328
+                    ],
+                    [
+                      25.94970703125,
+                      59.2771080105117
+                    ],
+                    [
+                      25.99365234375,
+                      59.17029835064482
+                    ]
+                  ]
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {},
+                "geometry": {
+                  "type": "Polygon",
+                  "coordinates": [
+                    [
+                      [
+                        25.504760742187496,
+                        59.054680988732315
+                      ],
+                      [
+                        25.416870117187496,
+                        58.947174821111965
+                      ],
+                      [
+                        25.46630859375,
+                        58.92449914384962
+                      ],
+                      [
+                        25.7574462890625,
+                        58.938673187948304
+                      ],
+                      [
+                        25.504760742187496,
+                        59.054680988732315
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {},
+                "geometry": {
+                  "type": "Polygon",
+                  "coordinates": [
+                    [
+                      [
+                        26.1199951171875,
+                        59.015112509567786
+                      ],
+                      [
+                        26.004638671875,
+                        58.91315571775059
+                      ],
+                      [
+                        26.0870361328125,
+                        58.8734243789077
+                      ],
+                      [
+                        26.1859130859375,
+                        58.86774474539531
+                      ],
+                      [
+                        26.3671875,
+                        58.91315571775059
+                      ],
+                      [
+                        26.3067626953125,
+                        59.0009698708429
+                      ],
+                      [
+                        26.1199951171875,
+                        59.015112509567786
+                      ]
+                    ]
+                  ]
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {},
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    25.751953125,
+                    58.83080439883584
+                  ]
+                }
+              },
+              {
+                "type": "Feature",
+                "properties": {},
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    24.8016357421875,
+                    59.02924933736396
+                  ]
+                }
+              }
+            ]
           }
-
-          map.addLayer({
-        "id": "points",
-        "type": "symbol",
-        "source": {
-            "type": "geojson",
-            "data": {
-                "type": "FeatureCollection",
-                "features": [{
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [-77.03238901390978, 38.913188059745586]
-                    },
-                    "properties": {
-                        "title": "Mapbox DC",
-                        "icon": "monument"
-                    }
-                }, {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [-122.414, 37.776]
-                    },
-                    "properties": {
-                        "title": "Mapbox SF",
-                        "icon": "harbor"
-                    }
-                }]
-            }
-        },
-        "layout": {
-            "icon-image": "{icon}-15",
-            "text-field": "{title}",
-            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-            "text-offset": [0, 0.6],
-            "text-anchor": "top"
-        }
-    });
-
       });
 
+      map.addLayer({
+          "id": "park-boundary",
+          "type": "fill",
+          "source": "national-park",
+          "paint": {
+              "fill-color": "#888888",
+              "fill-opacity": 0.4
+          },
+          "filter": ["==", "$type", "Polygon"]
+      });
+
+      map.addLayer({
+          "id": "park-volcanoes",
+          "type": "circle",
+          "source": "national-park",
+          "paint": {
+              "circle-radius": 6,
+              "circle-color": "#B42222"
+          },
+          "filter": ["==", "$type", "Point"],
+      });
+      map.addLayer({
+          "id": "park-lines",
+          "type": "line",
+          "source": "national-park",
+          "paint": {
+            "line-color": "#888",
+            "line-width": 8
+          },
+          "filter": ["==", "$type", "LineString"],
+      });
+  });
     },
 
     showMap:function(){
