@@ -1,6 +1,6 @@
 <template lang="html"><div id="mapview">
   <!-- <button v-on:click="showMap" type="button" name="button">ShowMap</button> -->
-    <div id="mapid" style="height: 400px;"></div>
+    <div id="mapid" style="height: 800px;"></div>
 </div>
 
 </template>
@@ -29,7 +29,7 @@ export default {
       style: "mapbox://styles/mapbox/outdoors-v9",
       center: [25.0323486328125,
       58.68264859034907],
-      zoom: 10
+      zoom: 6
   });
 
   map.on("load", function() {

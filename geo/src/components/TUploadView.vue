@@ -1,19 +1,5 @@
 <template lang="html">
 <div id="uploadview">
-    <fieldset>
-        <div class="form-group">
-            <div class="input-group mb-3">
-                <div class="custom-file">
-                    <input type="file" id="file"></div>
-                    <div class="input-group-append">
-                        <button v-on:click="readBrowseFile" type="button" class="btn btn-warning">Upload</button>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <div class="progress">
-            <div id="bar" class="progress-bar bg-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
 
         <!-- <h3>File contents:</h3>
         <pre>
