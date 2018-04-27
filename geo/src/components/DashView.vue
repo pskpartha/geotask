@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-6 col-md-6">
             <div class="psk-box">
-                <!-- <MapView></MapView> -->
+                <MapView :mapdata="mapdata"></MapView>
             </div>
 
         </div>
@@ -29,7 +29,8 @@
                 <div class="psk-box">
 
                   <div class="psk-box">
-                      <button  v-on:click="processedFile" type="button" class="btn btn-warning btn-lg btn-block">PROCESS DATA</button>
+                      <button v-if="showProcessBtn" v-on:click="processedFile" type="button" class="btn btn-success btn-lg btn-block">PROCESS DATA</button>
+                      <button v-if="showCancelProcess" v-on:click="clearLocalData" type="button" class="btn btn-warning btn-lg btn-block">CLEAR PRESEND DATA</button>
                   </div>
                   <div  v-if="showAlert" class="psk-box">
                       <div class="alert alert-dismissible alert-danger">
@@ -37,7 +38,7 @@
                           <p class="mb-0"> Data is not available to Process</p>
                       </div>
                   </div>
-                  <div class="list-box">
+                  <div v-if="hideList" class="list-box">
                       <ul class="nav nav-tabs">
                           <li class="nav-item">
                               <a class="nav-link active show" data-toggle="tab" href="#alldatatab">All</a>
@@ -171,12 +172,9 @@ function download(filename, text) {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', filename);
-
     element.style.display = 'none';
     document.body.appendChild(element);
-
     element.click();
-
     document.body.removeChild(element);
 }
 
@@ -202,6 +200,10 @@ export default {
         ppoints:'',
         ppolygons:'',
         plines:'',
+        mapdata:'',
+        showProcessBtn:false,
+        showCancelProcess:false,
+        hideList:false
       }
     },
     methods:{
@@ -263,7 +265,7 @@ export default {
 
     var finaldata = JSON.parse(fileString);
     // console.log(finaldata);
-
+    this.mapdata = finaldata;
     // var arrayobj = JSON.parse(this.uploadData);
     // console.log(arrayobj);
     let arraydata = finaldata.features;
@@ -303,6 +305,7 @@ export default {
       localStorage.setItem('localspdata', JSON.stringify(this.formatteddata));
     }
 	 document.getElementById("bar").style.width = 100 + "%";
+   this.showProcessBtn = true;
   },
 
    errorHandler:function(evt)
@@ -315,7 +318,7 @@ export default {
   },
 
       showoriginaldata:function(){
-        this.uploaddone = false;
+        // this.uploaddone = false;
 
       var self = this;
 
@@ -334,6 +337,23 @@ processedFile: function(){
       this.plines = this.pspdata[2];
       // console.log(this.spdata[0]);
        console.log('from list',this.pspdata);
+    // localStorage.removeItem('localspdata');
+    // localStorage.setItem('localspdata', JSON.stringify(this.formatteddata));
+
+  }
+  this.hideList = true;
+  this.showProcessBtn = false;
+  this.showCancelProcess =true;
+},
+clearLocalData:function(){
+  if(localStorage.getItem('localspdata') === null){
+    // this.$alert.danger({ message: 'Nothing Found' });
+    this.showAlert=true;
+  } else {
+    // this.$alert.success({ message: 'Data is available' });
+      localStorage.removeItem('localspdata') ;
+      this.hideList = false;
+
     // localStorage.removeItem('localspdata');
     // localStorage.setItem('localspdata', JSON.stringify(this.formatteddata));
 
