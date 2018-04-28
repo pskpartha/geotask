@@ -350,6 +350,8 @@ processedFile: function(){
     // this.$alert.danger({ message: 'Nothing Found' });
     this.showAlert=true;
   } else {
+
+    this.pspdata = [];
     // this.$alert.success({ message: 'Data is available' });
       this.pspdata=JSON.parse(localStorage.getItem('localspdata')) ;
       this.ppoints=this.pspdata[0];
@@ -369,6 +371,7 @@ clearLocalData:function(){
   if(localStorage.getItem('localspdata') === null){
     // this.$alert.danger({ message: 'Nothing Found' });
     this.showAlert=true;
+    this.showProcessBtn =true;
   } else {
     // this.$alert.success({ message: 'Data is available' });
       localStorage.removeItem('localspdata') ;
@@ -376,7 +379,8 @@ clearLocalData:function(){
 
     // localStorage.removeItem('localspdata');
     // localStorage.setItem('localspdata', JSON.stringify(this.formatteddata));
-
+this.showProcessBtn = true;
+this.showCancelProcess =false;
   }
 },
 viewOnMapPoint:function(index){

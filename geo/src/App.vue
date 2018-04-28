@@ -3,7 +3,7 @@
 
     <div class="container-fluid">
       <div class="body-wrapper">
-            <DashView></DashView>
+            <NewDashHome></NewDashHome>
       </div>
 
     </div>
@@ -11,11 +11,11 @@
 </div>
 </template>
 <script>
-import DashView from './components/DashView'
+import NewDashHome from './components/NewDashHome'
 export default {
   name: 'App',
   components:{
-    DashView
+    NewDashHome
   }
 }
 </script>
