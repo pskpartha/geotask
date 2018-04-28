@@ -11,16 +11,16 @@
             class="input-group-append"> <button v-on:click="readBrowseFile" type="button" class="btn btn-warning">Upload</button> </div> </div> </div> </fieldset> <div
             class="progress"> <div id="bar" class="progress-bar bg-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div> </div> </div> -->
             <!-- list -->
-            <div class="psk-box">
+            <div v-if="showBrowse" class="psk-box">
                 <!-- <textarea rows="10" v-model="text"></textarea> <br> -->
                 <text-reader @load="text = $event"></text-reader>
             </div>
 
             <div class="psk-box">
-                <button v-on:click="processedFile" type="button" class="btn btn-success btn-lg btn-block">PROCESS DATA</button>
-                <button v-on:click="clearLocalData" type="button" class="btn btn-warning btn-lg btn-block">CLEAR PRESEND DATA</button>
+                <button v-if="showProcess" v-on:click="processedFile" type="button" class="btn btn-success btn-lg btn-block">PROCESS DATA</button>
+                <button v-if="showClear" v-on:click="clearLocalData" type="button" class="btn btn-warning btn-lg btn-block">CLEAR PRESENT DATA</button>
             </div>
-            <div class="list-box">
+            <div v-if="showList" class="list-box">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
                         <a class="nav-link active show" data-toggle="tab" href="#alldatatab">All</a>
@@ -178,7 +178,11 @@ export default {
         points:[],
         polygons:[],
         lines:[],
-        mapdata:''
+        mapdata:'',
+        showBrowse:true,
+        showProcess:true,
+        showClear:false,
+        showList:false
 
       }
     },
@@ -235,7 +239,8 @@ export default {
 
       console.log(this.formatteddata.length);
 
-
+        this.showClear = true;
+        this.showList = true;
     },
     viewOnMapPoint(index){
       let pointdata =  this.points[index];
@@ -260,6 +265,8 @@ export default {
       this.formatteddata= [];
       this.points = [];
       this.mapdata=[];
+      this.showClear = false;
+      this.showList = false;
 
     },
     downloadPointFile(index){
