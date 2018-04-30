@@ -1,8 +1,8 @@
-<template lang="html"><div id="mapview">
-  <!-- <button v-on:click="showMap" type="button" name="button">ShowMap</button> -->
+<template lang="html">
+<div id="mapview">
+    <!-- <button v-on:click="showMap" type="button" name="button">ShowMap</button> -->
     <div id="mapid" style="height: 800px;"></div>
 </div>
-
 </template>
 <script>
 
@@ -24,14 +24,38 @@ export default {
     }
   },
   methods:{
+
+
     mapbox:function(){
+
+    var dynamic =[];
+    dynamic =[25.025420,58.593107];
+
+    // var zoomvalue = '';
+    var newvalue= this.parentdata;
+    console.log(newvalue);
+    // if (newvalue.length === 0){
+    //   dynamic =[25.025420,58.593107];
+    //   zoomvalue = 6;
+    //   console.log(dynamic);
+    // } else {
+    //   // var newvalue= this.parentdata;
+    //   // dynamic =[25.025420,58.593107];
+    //   dynamic =[this.parentdata[0].geometry.coordinates[0][0],
+    //   this.parentdata[0].geometry.coordinates[0][1]];
+    //   zoomvalue = 10;
+    //   // console.log('new',newvalue);
+    //   // console.log('new',newvalue[0].geometry.coordinates[0][0]);
+    //   console.log('else',dynamic);
+    // }
+
+
       mapboxgl.accessToken = 'pk.eyJ1IjoicHNrcGFydGhhIiwiYSI6ImNqZ2UxbmVlMTIxOWsycW5wNHI4OTM0ZTgifQ.3i9niqwBEtRJ6E_WMXiVVw';
   var map = new mapboxgl.Map({
       container: "mapid",
       style: "mapbox://styles/mapbox/outdoors-v9",
-      center: [25.0323486328125,
-      58.68264859034907],
-      zoom: 6
+      center: dynamic,
+      zoom: 7
   });
 // var arrdata= [];
 // var abc = {
@@ -70,7 +94,7 @@ Object.size = function(obj) {
     return size;
 };
 var size = Object.size(testmapdata.features);
-console.log(size);
+// console.log(size);
 if (size>0){
   map.on("load", function() {
       map.addSource("national-park", {
@@ -83,7 +107,7 @@ if (size>0){
           "type": "fill",
           "source": "national-park",
           "paint": {
-              "fill-color": "#888888",
+              "fill-color": "#f368e0",
               "fill-opacity": 0.4
           },
           "filter": ["==", "$type", "Polygon"]
@@ -95,7 +119,7 @@ if (size>0){
           "source": "national-park",
           "paint": {
               "circle-radius": 6,
-              "circle-color": "#B42222"
+              "circle-color": "#341f97"
           },
           "filter": ["==", "$type", "Point"],
       });
@@ -104,7 +128,7 @@ if (size>0){
           "type": "line",
           "source": "national-park",
           "paint": {
-            "line-color": "#888",
+            "line-color": "#ee5253",
             "line-width": 8
           },
           "filter": ["==", "$type", "LineString"],
@@ -117,7 +141,7 @@ if (size>0){
 
     }
   },created:function(){
-    console.log('working created');
+    // console.log('working created');
       // this.showMap();
   },
   mounted: function () {
@@ -131,7 +155,7 @@ if (size>0){
 watch:{
   mapdata:function(val){
     // return val;
-    console.log('watch',JSON.stringify(val.features));
+    // console.log('watch',JSON.stringify(val.features));
     this.parentdata = val;
     this.mapbox();
   },

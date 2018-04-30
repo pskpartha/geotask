@@ -211,7 +211,7 @@ export default {
             var pointcor = turf.point(cor);
             // console.log('point',cor);
             // var point = turf.point([-90.548630, 14.616599]);
-            var buffered = turf.buffer(pointcor, 20, {units: 'miles'});
+            var buffered = turf.buffer(pointcor, 10, {units: 'miles'});
            // console.log(data.geometry.type);
            // console.log(buffered);
             self.points.push(buffered);
@@ -223,7 +223,7 @@ export default {
            let line = data;
            var cor = line.geometry.coordinates;
            var linecor = turf.lineString(cor);
-            var buffered = turf.buffer(linecor, 25, {units: 'miles'});
+            var buffered = turf.buffer(linecor, 5, {units: 'miles'});
           // console.log(data.geometry.coordinates);
            self.lines.push(buffered);
     }
